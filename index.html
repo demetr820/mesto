@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+<body class="page">
+  <header class="header">
+    <img src="images/logo.svg" alt="Место" class="logo">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__image">
+        <img src="" alt="">
+      </div>
+      <h2 class="profile__user-name">
+        Жак-Ив Кусто
+      </h2>
+      <p class="profile__description">
+        Исследователь океана
+      </p>
+      <button class="profile__button-edit" aria-label="редактировать"></button>
+    </section>
+    <button class="profile__button-add" aria-label="добавить место"></button>
+    <section class="places">
+      <article class="places__item">
+        <img src="images/church.jpg" alt="Карачаевск">
+        <div class="places__body">
+          <h3 class="places__title">Карачаевск</h3>
+          <button class="places__like-button" aria-label="like"></button>
+        </div>
+      </article>
+      <article class="places__item">
+        <img src="images/elbrus.jpg" alt="Гора Эльбрус">
+        <div class="places__body">
+          <h3 class="places__title">Гора Эльбрус</h3>
+          <button class="places__like-button" aria-label="like"></button>
+        </div>
+      </article>
+      <article class="places__item">
+        <img src="images/dombay.jpg" alt="Домбай">
+        <div class="places__body">
+          <h3 class="places__title">Домбай</h3>
+          <button class="places__like-button" aria-label="like"></button>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">
+      © 2020 Mesto Russia
+    </p>
+  </footer>
+  <section class="popup">
+    <form class="popup__container">
+      <h2 class="popup__title"></h2>
+      <input class="popup__input" type="text" name="name"
+      aria-label="user-name">
+      <input class="popup__input" type="text" name="text"
+      aria-label="user-description">
+      <button type="submit">Сохранить</button>
+    </form>
+  </section>
+  <script src="script/script.js"></script>
+</body>
+</html>
