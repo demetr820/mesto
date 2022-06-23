@@ -1,0 +1,6 @@
+.profile__text {
+  position: relative;
+  min-width: 336px;
+  padding: 0 42px 0 13px;
+  box-sizing: border-box;
+}

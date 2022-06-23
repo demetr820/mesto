@@ -1,0 +1,8 @@
+.profile__button {
+  display: block;
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}

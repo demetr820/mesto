@@ -13,18 +13,24 @@
   </header>
   <main class="content">
     <section class="profile">
-      <div class="profile__image">
-        <img src="" alt="">
+      <div class="profile__user-block">
+        <img class="profile__image" src="images/avatar.jpg" alt="аватар">
+        <div class="profile__text">
+          <h2 class="profile__user-name">
+            Жак-Ив Кусто
+          </h2>
+          <p class="profile__description">
+            Исследователь океана
+          </p>
+          <button class="profile__button profile__button_edit" aria-label="редактировать">
+            <svg width="10" height="10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.328 2.604 8.767 1.283 7.419 8.66 0 10 1.328ZM0 10l1.962-.588L.585 8.083 0 10Z" fill="#fff"/></svg>
+          </button>
+        </div>
       </div>
-      <h2 class="profile__user-name">
-        Жак-Ив Кусто
-      </h2>
-      <p class="profile__description">
-        Исследователь океана
-      </p>
-      <button class="profile__button-edit" aria-label="редактировать"></button>
+      <button class="profile__button profile__button_add" aria-label="добавить место">
+        <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 9.778h-9.778V0H9.778v9.778H0v2.444h9.778V22h2.444v-9.778H22V9.778Z" fill="#fff"/></svg>
+      </button>
     </section>
-    <button class="profile__button-add" aria-label="добавить место"></button>
     <section class="places">
       <article class="places__item">
         <img src="images/church.jpg" alt="Карачаевск">
