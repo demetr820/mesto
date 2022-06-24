@@ -1,4 +1,4 @@
 .places__item {
-  width: 282px;
-  height: 362px;
+  max-width: 282px;
+  /* height: 362px; */
 }
