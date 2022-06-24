@@ -5,3 +5,7 @@
   width: 24px;
   height: 24px;
 }
+.profile__button_edit:hover {
+  transition: .4s;
+  opacity: .6;
+}

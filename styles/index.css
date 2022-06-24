@@ -62,8 +62,14 @@
   height: 19px;
   padding: 0;
   margin: 0;
-  background-color: #fff;
   border: none;
+  background: url('../images/like-icon.svg') center / cover no-repeat;
+}
+.places__like-button:hover {
+  background: url('../images/like-icon-hover.svg') center / cover no-repeat;
+}
+.places__like-button_active {
+  background: url('../images/like-icon-active.svg') center / cover no-repeat;
 }
 .footer {
   padding: 26px 0 60px;
@@ -141,6 +147,10 @@
   margin: 0;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
+.popup__button-close:hover {
+  opacity: .6;
 }
 .popup__input {
   width: 100%;
