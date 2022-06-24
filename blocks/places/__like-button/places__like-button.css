@@ -1,0 +1,12 @@
+.places__like-button {
+  display: block;
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: url('../../../images/like-icon.svg') center / cover no-repeat;
+}
+.places__like-button:hover {
+  background: url('../../../images/like-icon-hover.svg') center / cover no-repeat;
+}
