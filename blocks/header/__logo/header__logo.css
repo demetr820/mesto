@@ -2,4 +2,13 @@
   display: block;
   width: 142px;
   height: 33px;
+  background: url('../../../images/logo.svg') top / cover no-repeat;
+  cursor: default;
+}
+.header__logo:hover {
+  display: block;
+  width: 142px;
+  height: 33px;
+  background: url('../../../images/logo-hover.svg') top / cover no-repeat;
+  transition: .6s;
 }
