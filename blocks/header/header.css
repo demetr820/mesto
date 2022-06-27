@@ -1,4 +1,9 @@
 .header {
-  padding: 45px 0  0;
+  padding: 45px 0 0;
   border-bottom: 1px solid #545454;
+}
+@media (max-width: 541px) {
+  .header {
+    padding: 28px 0 0;
+  }
 }

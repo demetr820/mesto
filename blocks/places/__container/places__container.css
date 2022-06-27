@@ -2,3 +2,8 @@
   max-width: 880px;
   margin: 0 auto 40px;
 }
+@media (max-width: 541px) {
+  .places__container {
+    margin: 0 auto 22px;
+  }
+}

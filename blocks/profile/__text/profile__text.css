@@ -1,6 +1,18 @@
 .profile__text {
-  position: relative;
-  min-width: 336px;
-  padding: 0 42px 0 13px;
-  box-sizing: border-box;
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: minmax(min-content, max-content) 24px;
+  grid-template-areas:
+    'title button-edit'
+    'desc  .';
+  row-gap: 12px;
+  column-gap: 19px;
+}
+@media (max-width: 541px) {
+  .profile__text {
+    grid-template-areas:
+      'title button-edit'
+      'desc  .';
+  }
 }

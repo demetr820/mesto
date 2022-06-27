@@ -4,6 +4,14 @@ const buttonClose = popup.querySelector('.popup__button-close');
 const inputUserName = popup.querySelector('#user-name');
 const inputAbout = popup.querySelector('#about');
 const form = popup.querySelector('.popup__container');
+const buttonsLike = document.querySelectorAll('.places__like-button');
+console.log(buttonsLike);
+for (let i = 0; i < buttonsLike.length; i++) {
+  buttonsLike[i].addEventListener('click', function(e) {
+    console.log(e.target);
+    e.target.classList.toggle('places__like-button_active');
+  });
+}
 const popupHide = () => {
   popup.classList.remove('popup_opened');
 }

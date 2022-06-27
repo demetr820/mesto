@@ -3,3 +3,9 @@
   min-height: 74px;
   margin: 0 auto 40px;
 }
+@media (max-width: 541px) {
+  .header__container {
+    min-height: 56px;
+    margin: 0 auto 42px;
+  }
+}
