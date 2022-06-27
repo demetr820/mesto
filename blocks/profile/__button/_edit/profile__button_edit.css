@@ -8,6 +8,13 @@
   height: 24px;
   margin: 14px 0 0;
 }
+.profile__button_edit::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: url('../../../../images/edit-icon.svg') top / cover no-repeat;
+}
 .profile__button_edit:hover {
   transition: .4s;
   opacity: .6;
@@ -16,5 +23,10 @@
   .profile__button_edit {
     width: 18px;
     height: 18px;
+  }
+  .profile__button_edit::after {
+    width: 7.5px;
+    height: 7.5px;
+    background: url('../../../../images/edit-icon-mobile.svg') top / cover no-repeat;
   }
 }

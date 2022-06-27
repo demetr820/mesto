@@ -9,11 +9,11 @@
 @import url('../blocks/profile/__container/profile__container.css');
 @import url('../blocks/profile/__image/profife__image.css');
 @import url('../blocks/profile/__button/profile__button.css');
-@import url('../blocks/profile/__button/_add/profile__button_add.css');
 @import url('../blocks/profile/__button/_edit/profile__button_edit.css');
+@import url('../blocks/profile/__button/_add/profile__button_add.css');
+@import url('../blocks/profile/__text/profile__text.css');
 @import url('../blocks/profile/__user-name/profile__user-name.css');
 @import url('../blocks/profile/__description/profile__description.css');
-@import url('../blocks/profile/__text/profile__text.css');
 @import url('../blocks/places/places.css');
 @import url('../blocks/places/__container/places__container.css');
 @import url('../blocks/places/__item/places__item.css');
