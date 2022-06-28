@@ -15,9 +15,10 @@
 @media (max-width: 541px) {
   .popup__container {
     width: 282px;
+    height: 322px;
+    padding: 25px 22px;
   }
 }
-
 @keyframes popup {
   0% {
     transform: translateY(-150%);
@@ -26,3 +27,4 @@
     transform: translateY(0%);
   }
 }
+

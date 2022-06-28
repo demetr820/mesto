@@ -23,6 +23,7 @@
   .profile__button_edit {
     width: 18px;
     height: 18px;
+    margin: 8px 0 0;
   }
   .profile__button_edit::after {
     width: 7.5px;
