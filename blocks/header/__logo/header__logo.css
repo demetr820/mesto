@@ -4,19 +4,15 @@
   height: 33px;
   background: url('../../../images/logo.svg') top / cover no-repeat;
   cursor: default;
+  transition: .6s;
 }
 .header__logo:hover {
   background: url('../../../images/logo-hover.svg') top / cover no-repeat;
-  transition: .6s;
 }
 @media (max-width: 541px) {
   .header__logo {
     width: 103px;
     height: 24px;
     margin: 0 0 0 27px;
-  }
-  .header__logo:hover {
-    width: 103px;
-    height: 24px;
   }
 }

@@ -2,7 +2,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 430px;
   height: 330px;
   padding: 34px 36px 37px;
