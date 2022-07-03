@@ -3,8 +3,8 @@
   width: 142px;
   height: 33px;
   background: url('../../../images/logo.svg') top / cover no-repeat;
-  cursor: default;
   transition: .6s;
+  cursor: pointer;
 }
 .header__logo:hover {
   background: url('../../../images/logo-hover.svg') top / cover no-repeat;

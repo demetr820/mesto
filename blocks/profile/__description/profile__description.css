@@ -1,6 +1,6 @@
 .profile__description {
   grid-area: desc;
-  max-width: 500px;
+  max-width: 320px;
   margin: 0;
   font-size: 18px;
   line-height: 22px;
@@ -12,7 +12,7 @@
 @media (max-width: 541px) {
   .profile__description {
     justify-self: center;
-    max-width: 200px;
+    max-width: 190px;
     font-size: 14px;
     line-height: 17px;
   }
