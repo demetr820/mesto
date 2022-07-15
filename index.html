@@ -32,113 +32,101 @@
       <section
         class="places page__section page__section_places"
         aria-label="places"
-      >
-        <article class="places__item">
-          <img class="places__image" src="images/church.jpg" alt="Карачаевск" />
-          <div class="places__body">
-            <h2 class="places__title">Карачаевск</h2>
-            <button
-              class="places__like-button"
-              aria-label="like"
-              type="button"
-            ></button>
-          </div>
-        </article>
-        <article class="places__item">
-          <img
-            class="places__image"
-            src="images/elbrus.jpg"
-            alt="Гора Эльбрус"
-          />
-          <div class="places__body">
-            <h2 class="places__title">Гора Эльбрус</h2>
-            <button
-              class="places__like-button"
-              aria-label="like"
-              type="button"
-            ></button>
-          </div>
-        </article>
-        <article class="places__item">
-          <img class="places__image" src="images/dombay.jpg" alt="Домбай" />
-          <div class="places__body">
-            <h2 class="places__title">Домбай</h2>
-            <button
-              class="places__like-button"
-              aria-label="like"
-              type="button"
-            ></button>
-          </div>
-        </article>
-        <article class="places__item">
-          <img
-            class="places__image"
-            src="images/elbrus.jpg"
-            alt="Гора Эльбрус"
-          />
-          <div class="places__body">
-            <h2 class="places__title">Гора Эльбрус</h2>
-            <button
-              class="places__like-button"
-              aria-label="like"
-              type="button"
-            ></button>
-          </div>
-        </article>
-        <article class="places__item">
-          <img class="places__image" src="images/dombay.jpg" alt="Домбай" />
-          <div class="places__body">
-            <h2 class="places__title">Домбай</h2>
-            <button
-              class="places__like-button"
-              aria-label="like"
-              type="button"
-            ></button>
-          </div>
-        </article>
-        <article class="places__item">
-          <img class="places__image" src="images/church.jpg" alt="Карачаевск" />
-          <div class="places__body">
-            <h2 class="places__title">Карачаевск</h2>
-            <button
-              class="places__like-button"
-              aria-label="like"
-              type="button"
-            ></button>
-          </div>
-        </article>
-      </section>
+      ></section>
     </main>
     <footer class="footer page__section">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <section class="popup">
-      <div class="popup__container">
+    <section class="popup popup-profile">
+      <div class="popup__container popup__container_form">
         <button
           class="popup__button-close"
           aria-label="close"
           type="button"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" action="/" name="edit-form">
+        <form
+          class="popup__form popup__form_type_edit"
+          action="/"
+          name="edit-form"
+        >
           <input
             class="popup__input popup__input_type_user-name"
             type="text"
             name="name"
             aria-label="user-name"
-            id="user-name"
           />
           <input
             class="popup__input popup__input_type_description"
             type="text"
             name="text"
             aria-label="user-description"
-            id="about"
           />
           <button class="popup__button-save" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
+    <section class="popup popup-image">
+      <figure class="popup__container popup__container_image">
+        <button
+          class="popup__button-close"
+          aria-label="close"
+          type="button"
+        ></button>
+        <img class="popup-image__picture" src="./" alt="картинка" />
+        <h2 class="popup-image__title">Заголовок</h2>
+      </figure>
+    </section>
+    <section class="popup popup-card-add">
+      <div class="popup__container popup__container_form">
+        <button
+          class="popup__button-close"
+          aria-label="close"
+          type="button"
+        ></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form
+          class="popup__form popup__form_type_add"
+          action="/"
+          name="form-add-card"
+        >
+          <input
+            class="popup__input popup__input_type_name"
+            type="text"
+            name="name"
+            aria-label="name"
+            placeholder="Название"
+          />
+          <input
+            class="popup__input popup__input_type_link"
+            type="text"
+            name="link"
+            aria-label="link"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="popup__button-save" type="submit">Создать</button>
+        </form>
+      </div>
+    </section>
+    <template class="templates">
+      <article class="places__item">
+        <button
+          class="places__button-delete"
+          type="button"
+          aria-label="delete"
+        ></button>
+        <img class="places__image" />
+        <div class="places__body">
+          <h2 class="places__title"></h2>
+          <button
+            class="places__like-button"
+            aria-label="like"
+            type="button"
+          ></button>
+        </div>
+      </article>
+    </template>
+    <script src="scripts/cards.js"></script>
     <script src="scripts/index.js"></script>
   </body>
 </html>

@@ -9,6 +9,31 @@
   white-space: nowrap;
   overflow: hidden;
 }
+@media (max-width: 704px) {
+  .profile__user-name {
+    font-size: 38px;
+  }
+}
+@media (max-width: 668px) {
+  .profile__user-name {
+    font-size: 34px;
+  }
+}
+@media (max-width: 625px) {
+  .profile__user-name {
+    font-size: 30px;
+  }
+}
+@media (max-width: 549px) {
+  .profile__user-name {
+    font-size: 28px;
+  }
+}
+@media (max-width: 625px) {
+  .profile__user-name {
+    font-size: 30px;
+  }
+}
 @media (max-width: 541px) {
   .profile__user-name {
     max-width: 200px;

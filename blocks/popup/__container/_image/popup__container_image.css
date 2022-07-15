@@ -1,0 +1,13 @@
+.popup__container_image {
+  margin: 0;
+  padding: 0;
+  animation: show 1s ease-in forwards;
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

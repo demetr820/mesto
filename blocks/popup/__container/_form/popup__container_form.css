@@ -1,0 +1,28 @@
+.popup__container_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 430px;
+    height: 330px;
+    padding: 34px 36px 37px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    animation: popup ease-in .4s;
+  }
+  @keyframes popup {
+    0% {
+      top: -150%;
+    }
+    100% {
+      top: 50%;
+    }
+  }
+@media (max-width: 541px) {
+  .popup__container_form {
+    width: 282px;
+    height: 322px;
+    padding: 25px 22px;
+  }
+}

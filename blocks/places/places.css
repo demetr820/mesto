@@ -1,8 +1,8 @@
 .places {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 282px);
+  grid-template: repeat(auto-fill, 362px) / repeat(auto-fit, 282px);
   grid-auto-flow: row;
   gap: 20px 17px;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-items: start;
 }

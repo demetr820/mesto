@@ -8,6 +8,7 @@
   border: none;
   background: url('../../../images/like-icon.svg') center / cover no-repeat;
   cursor: pointer;
+  transition: .4s;
 }
 .places__like-button:hover {
   background: url('../../../images/like-icon-hover.svg') center / cover no-repeat;
