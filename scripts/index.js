@@ -10,7 +10,7 @@ const selectors = {
   formEditProfile: '.popup__form_type_edit',
   formAddNewCard: '.popup__form_type_add',
   // Кнопки
-  popupCloseButton: '.popup__button-close',
+  popupCloseButtons: '.popup__button-close',
   editProfileButton: '.profile__button_edit',
   addNewCardButton: '.profile__button_add',
   // Поля ввода
@@ -30,7 +30,7 @@ const popupImage = document.querySelector(selectors.popupImage);
 const popupAddNewCard = document.querySelector(selectors.popupAddNewCard);
 // Кнопки
 const editProfileButton = document.querySelector(selectors.editProfileButton);
-const popupCloseButton = document.querySelectorAll(selectors.popupCloseButton);
+const popupCloseButtons = document.querySelectorAll(selectors.popupCloseButtons);
 // Поля ввода
 const inputUserName = popupCardEdit.querySelector(selectors.inputUserName);
 const inputAbout = popupCardEdit.querySelector(selectors.inputAbout);
@@ -90,7 +90,7 @@ function openImage(name, link) {
   popupImageTitle.textContent = name;
   showPopup(popupImage);
 }
-popupCloseButton.forEach(button => {
+popupCloseButtons.forEach(button => {
   button.addEventListener('click', (e) => {
     const popup = e.target.closest('.popup');
     hidePopup(popup);
