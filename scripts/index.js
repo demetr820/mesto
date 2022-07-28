@@ -48,6 +48,12 @@ const ImageInPicturePopup = document.querySelector(selectors.ImageInPicturePopup
 const popupImageTitle = document.querySelector(selectors.popupImageTitle);
 function showPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', closePopupByOverlayClick);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hidePopup(popup);
+    }
+  });
 }
 function hidePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -90,6 +96,12 @@ function openImage(name, link) {
   popupImageTitle.textContent = name;
   showPopup(popupImage);
 }
+function closePopupByOverlayClick(e) {
+  const popup = e.currentTarget;
+  if (e.currentTarget !== e.target) return;
+  hidePopup(popup);
+  popup.removeEventListener('click', closePopupByOverlayClick);
+}
 popupCloseButtons.forEach(button => {
   button.addEventListener('click', (e) => {
     const popup = e.target.closest('.popup');
@@ -102,25 +114,40 @@ editProfileButton.addEventListener('click', () => {
   showPopup(popupCardEdit);
 });
 addNewCardButton.addEventListener('click', () => {
+  formAddNewCard.reset();
   showPopup(popupAddNewCard);
 });
 formEditProfile.addEventListener('submit', (e) => {
   e.preventDefault();
-  const popup = e.target.closest('.popup');
-  userName.textContent = inputUserName.value;
-  userDescription.textContent = inputAbout.value;
-  hidePopup(popup);
+  const form = e.target;
+  const isValid = form.checkValidity();
+  if (isValid) {
+    const popup = e.target.closest('.popup');
+    userDescription.textContent = inputAbout.value;
+    hidePopup(popup);
+  } else {
+    console.log('Form is not valid!');
+  }
 });
 formAddNewCard.addEventListener('submit', (e) => {
   e.preventDefault();
-  const popup = e.target.closest('.popup');
-  const item = {
-    name: formAddNewCardInputName.value,
-    link: formAddNewCardInputLink.value,
-  };
-  const card = createCard(item);
-  formAddNewCard.reset();
-  addItemToContainer(card, cardsContainer);
-  hidePopup(popup);
+  const form = e.target;
+  const isValid = form.checkValidity();
+  if (isValid) {
+    const popup = e.target.closest('.popup');
+    const item = {
+      name: formAddNewCardInputName.value,
+      link: formAddNewCardInputLink.value,
+    };
+    const card = createCard(item);
+    formAddNewCard.reset();
+    addItemToContainer(card, cardsContainer);
+    hidePopup(popup);
+  } else {
+    console.log('Form is not valid!');
+  }
 });
 createInitialCards();
+
+
+
