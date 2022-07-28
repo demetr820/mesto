@@ -49,11 +49,13 @@ const popupImageTitle = document.querySelector(selectors.popupImageTitle);
 function showPopup(popup) {
   popup.classList.add('popup_opened');
   popup.addEventListener('click', closePopupByOverlayClick);
-  window.addEventListener('keydown', (e) => {
+  function closePopupByEscClick(e) {
     if (e.key === 'Escape') {
       hidePopup(popup);
+      window.removeEventListener('keydown', closePopupByEscClick);
     }
-  });
+  }
+  window.addEventListener('keydown', closePopupByEscClick);
 }
 function hidePopup(popup) {
   popup.classList.remove('popup_opened');
