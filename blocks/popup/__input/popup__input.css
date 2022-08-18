@@ -9,6 +9,4 @@
   line-height: 17px;
   outline: none;
 }
-.popup__input:invalid {
-  border-bottom-color: red;
-}
+
