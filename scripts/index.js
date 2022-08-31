@@ -31,19 +31,21 @@ const popupCardEdit = document.querySelector(selectors.popupCardEdit);
 const popupImage = document.querySelector(selectors.popupImage);
 const popupAddNewCard = document.querySelector(selectors.popupAddNewCard);
 const popups = document.querySelectorAll(selectors.popups);
-// Кнопки
-const buttonOpenPopupProfile = document.querySelector(
-  selectors.buttonOpenPopupProfile
-);
-const buttonsClosePopup = document.querySelectorAll(
-  selectors.buttonsClosePopup
-);
+
 // Поля ввода
 const inputUserName = popupCardEdit.querySelector(selectors.inputUserName);
 const inputAbout = popupCardEdit.querySelector(selectors.inputAbout);
 // Формы
 const formEditProfile = document.querySelector(selectors.formEditProfile);
 const formAddNewCard = document.querySelector(selectors.formAddNewCard);
+// Кнопки
+const buttonOpenPopupProfile = document.querySelector(
+  selectors.buttonOpenPopupProfile
+);
+const buttonSubmitInFormAddNewCard = formAddNewCard.querySelector(selectors.buttonSubmit);
+const buttonsClosePopup = document.querySelectorAll(
+  selectors.buttonsClosePopup
+);
 const fieldUserName = document.querySelector(selectors.fieldUserName);
 const fieldUserDescription = document.querySelector(
   selectors.fieldUserDescription
@@ -129,10 +131,7 @@ function openPopupProfile() {
 function openPopupAddNewCard() {
   showPopup(popupAddNewCard);
 }
-function disableSubmitButton(button) {
-  button.setAttribute('disabled', true);
-  button.classList.add('popup__button-submit_disabled');
-}
+
 // Слушатели
 buttonsClosePopup.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -145,10 +144,9 @@ buttonOpenPopupAddNewCard.addEventListener("click", openPopupAddNewCard);
 formEditProfile.addEventListener("submit", (e) => {
   e.preventDefault();
   const form = e.target;
-  const popup = e.target.closest(".popup");
   fieldUserName.textContent = inputUserName.value;
   fieldUserDescription.textContent = inputAbout.value;
-  hidePopup(popup);
+  hidePopup(popupCardEdit);
 });
 formAddNewCard.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -157,14 +155,12 @@ formAddNewCard.addEventListener("submit", (e) => {
     link: inputLinkInformAddNewCard.value,
   };
   const card = createCard(item);
-  const button = formAddNewCard.querySelector(selectors.buttonSubmit);
   addItemToContainer(card, cardsContainer);
   hidePopup(popupAddNewCard);
   formAddNewCard.reset();
-  disableSubmitButton(button);
+  disableSubmitButton(buttonSubmitInFormAddNewCard);
 });
 popups.forEach((popup) => {
   popup.addEventListener("click", closePopupByOverlayClick);
 });
 createInitialCards();
-

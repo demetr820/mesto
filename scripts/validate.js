@@ -1,3 +1,11 @@
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  spanErrorClass: 'popup__error_visible'
+};
 
 function enableValidation(config) {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
@@ -28,6 +36,7 @@ function showInputError(input, config) {
   input.classList.add(config.inputErrorClass);
   span.classList.add(config.spanErrorClass);
 }
+
 function hideInputError(input, config) {
   const span = input.nextElementSibling;
   span.textContent = '';
@@ -35,6 +44,7 @@ function hideInputError(input, config) {
   span.classList.remove(config.spanErrorClass);
 
 }
+
 function setSubmitButtonState(form, config) {
   const button = form.querySelector(config.submitButtonSelector);
   const isValid = form.checkValidity();
@@ -46,11 +56,10 @@ function setSubmitButtonState(form, config) {
     button.classList.add(config.inactiveButtonClass);
   }
 }
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-submit',
-  inactiveButtonClass: 'popup__button-submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  spanErrorClass: 'popup__error_visible'
-});
+
+function disableSubmitButton(button) {
+  button.setAttribute('disabled', true);
+  button.classList.add(config.inactiveButtonClass);
+}
+
+enableValidation(config);
