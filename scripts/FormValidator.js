@@ -1,57 +1,56 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
+    this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
   };
   enableValidation() {
-    this._form.addEventListener('input', (e) => this._handleFormInput(e, this._config));
-    this._form.addEventListener('submit', this._handleFormSubmit);
+    this._form.addEventListener('input', (e) => this._handleFormInput(e));
+    this._form.addEventListener('submit', (e) => this._handleFormSubmit(e));
   };
 
-  _handleFormInput(e, config) {
+  _handleFormInput(e) {
     const input = e.target;
 
     if (!input.validity.valid) {
-      this._showInputError(input, config);
+      this._showInputError(input);
     } else {
-      this._hideInputError(input, this._config);
+      this._hideInputError(input);
     }
-    this._setSubmitButtonState(this._form, config);
+    this._setSubmitButtonState();
   }
 
   _handleFormSubmit(e) {
     e.preventDefault();
   }
-  _showInputError(input, config) {
+  _showInputError(input) {
     const span = input.nextElementSibling;
     span.textContent = input.validationMessage;
-    input.classList.add(config.inputErrorClass);
-    span.classList.add(config.spanErrorClass);
+    input.classList.add(this._config.inputErrorClass);
+    span.classList.add(this._config.spanErrorClass);
   }
 
-  _hideInputError(input, config) {
+  _hideInputError(input) {
     const span = input.nextElementSibling;
     span.textContent = '';
-    input.classList.remove(config.inputErrorClass);
-    span.classList.remove(config.spanErrorClass);
+    input.classList.remove(this._config.inputErrorClass);
+    span.classList.remove(this._config.spanErrorClass);
 
   }
 
-  _setSubmitButtonState(form, config) {
-    const button = form.querySelector(config.submitButtonSelector);
-    const isValid = form.checkValidity();
+  _setSubmitButtonState() {
+    const isValid = this._form.checkValidity();
     if (isValid) {
-      button.removeAttribute('disabled');
-      button.classList.remove(config.inactiveButtonClass);
+      this._submitButton.removeAttribute('disabled');
+      this._submitButton.classList.remove(this._config.inactiveButtonClass);
     } else {
-      button.setAttribute('disabled', true);
-      button.classList.add(config.inactiveButtonClass);
+      this.disableSubmitButton();
     }
   }
 
-  disableSubmitButton(button) {
-    button.setAttribute('disabled', true);
-    button.classList.add(this._config.inactiveButtonClass);
+  disableSubmitButton() {
+    this._submitButton.setAttribute('disabled', true);
+    this._submitButton.classList.add(this._config.inactiveButtonClass);
   }
   resetErrors() {
     const inputs = Array.from(this._form.querySelectorAll(`.${this._config.inputErrorClass}`));
