@@ -1,30 +1,31 @@
+import '../pages/index.css';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import { initialCards,
-  popupCardEdit,
-  popupImage,
-  popupAddNewCard,
-  popups,
+  // popupCardEdit,
+  // popupImage,
+  // popupAddNewCard,
+  // popups,
   inputUserName,
   inputAbout,
-  formEditProfile,
-  formAddNewCard,
+  // formEditProfile,
+  // formAddNewCard,
   formEditValidator,
   addNewCardFormValidator,
   buttonOpenPopupProfile,
-  buttonSubmitInFormAddNewCard,
-  buttonsClosePopup,
-  fieldUserName,
-  fieldUserDescription,
+  // buttonSubmitInFormAddNewCard,
+  // buttonsClosePopup,
+  // fieldUserName,
+  // fieldUserDescription,
   inputNameInformAddNewCard,
   inputLinkInformAddNewCard,
-  cardsContainer,
+  // cardsContainer,
   buttonOpenPopupAddNewCard,
-  imageInPicturePopup,
-  titleInPopupImage,
+  // imageInPicturePopup,
+  // titleInPopupImage,
   selectors } from '../utils/consts.js';
 
 const popupWithImage = new PopupWithImage(selectors.popupImage);
@@ -45,7 +46,7 @@ const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, (e) =>
   const card = cardElement.generateCard();
   cardsList.addItem(card);
   popupWithFormNewCard.close();
-  popupWithFormNewCard.disableSubmitButton();
+  formEditValidator.disableSubmitButton();
 });
 const userInfo = new UserInfo({ nameSelector: selectors.fieldUserName, descriptionSelector: selectors.fieldUserDescription });
 

@@ -9,9 +9,8 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
+      href="<%=require('./images/favicon-32x32.png')%>"
     />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <header class="header page__section page__section_header">
@@ -19,7 +18,7 @@
     </header>
     <main class="content">
       <section class="profile page__section">
-        <img class="profile__image" src="images/avatar.jpg" alt="аватар" />
+        <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="аватар" />
         <div class="profile__text">
           <h1 class="profile__user-name">Жак-Ив Кусто</h1>
           <p class="profile__description">Исследователь океана</p>
@@ -55,7 +54,7 @@
           <input
             class="popup__input popup__input_type_user-name"
             type="text"
-            name="name"
+            name="user-name"
             aria-label="user-name"
             minlength="2"
             maxlength="40"
@@ -65,7 +64,7 @@
           <input
             class="popup__input popup__input_type_description"
             type="text"
-            name="text"
+            name="user-description"
             aria-label="user-description"
             minlength="2"
             maxlength="200"
@@ -144,9 +143,5 @@
         </div>
       </article>
     </template>
-    <script type="module" src="./components/Card.js"></script>
-    <script type="module" src="./components/FormValidator.js"></script>
-    <script type="module" src="./utils/consts.js"></script>
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
