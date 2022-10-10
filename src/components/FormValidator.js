@@ -52,14 +52,4 @@ export default class FormValidator {
     this._submitButton.setAttribute('disabled', true);
     this._submitButton.classList.add(this._config.inactiveButtonClass);
   }
-  resetErrors() {
-    const inputs = Array.from(this._form.querySelectorAll(`.${this._config.inputErrorClass}`));
-    this._form.reset();
-    if (inputs) {
-      Array.from(inputs).forEach(input => {
-        input.classList.remove(this._config.inputErrorClass);
-        input.nextElementSibling.textContent = '';
-      });
-    }
-  }
 }

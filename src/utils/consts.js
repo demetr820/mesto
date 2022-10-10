@@ -1,4 +1,4 @@
-import FormValidator  from './FormValidator.js';
+import FormValidator  from '../components/FormValidator.js';
 export const selectors = {
   // Попапы
   popupCardEdit: '.popup-profile',
