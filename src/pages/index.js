@@ -5,57 +5,42 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import { initialCards,
-  // popupCardEdit,
-  // popupImage,
-  // popupAddNewCard,
-  // popups,
   inputUserName,
   inputAbout,
-  // formEditProfile,
-  // formAddNewCard,
   formEditValidator,
   addNewCardFormValidator,
   buttonOpenPopupProfile,
-  // buttonSubmitInFormAddNewCard,
-  // buttonsClosePopup,
-  // fieldUserName,
-  // fieldUserDescription,
-  inputNameInformAddNewCard,
-  inputLinkInformAddNewCard,
-  // cardsContainer,
+  // inputNameInformAddNewCard,
+  // inputLinkInformAddNewCard,
   buttonOpenPopupAddNewCard,
-  // imageInPicturePopup,
-  // titleInPopupImage,
-  selectors } from '../utils/consts.js';
+  selectors} from '../utils/consts.js';
 
 const popupWithImage = new PopupWithImage(selectors.popupImage);
 
-const popupWithFormProfile = new PopupWithForm(selectors.popupCardEdit, (e) => {
-  e.preventDefault();
-  userInfo.setUserInfo(inputUserName.value, inputAbout.value)
-  popupWithFormProfile.close();
+const popupWithFormProfile = new PopupWithForm(selectors.popupCardEdit, (item) => {
+  userInfo.setUserInfo(item);
 });
 
-const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, (e) => {
-  e.preventDefault();
-  const item = {
-    name: inputNameInformAddNewCard.value,
-    link: inputLinkInformAddNewCard.value,
-  };
-  const cardElement = new Card(item, selectors.template, openImagePopup);
-  const card = cardElement.generateCard();
+const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, (item) => {
+  const card = createNewCard(item);
   cardsList.addItem(card);
-  popupWithFormNewCard.close();
-  formEditValidator.disableSubmitButton();
+  addNewCardFormValidator.disableSubmitButton();
 });
 const userInfo = new UserInfo({ nameSelector: selectors.fieldUserName, descriptionSelector: selectors.fieldUserDescription });
 
 // Функции
+function createNewCard(item) {
+  const cardElement = new Card(item, selectors.template, openImagePopup);
+  const card = cardElement.generateCard();
+  return card;
+}
+
 function openImagePopup(link, name) {
   popupWithImage.open(link, name);
 }
 // Слушатели
 buttonOpenPopupProfile.addEventListener('click', () => {
+  formEditValidator.resetErrors();
   const data = userInfo.getUserInfo();
   inputUserName.value = data.userName;
   inputAbout.value = data.userDescription;
@@ -63,6 +48,7 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 });
 
 buttonOpenPopupAddNewCard.addEventListener('click', () => {
+  addNewCardFormValidator.resetErrors();
   popupWithFormNewCard.open();
 });
 

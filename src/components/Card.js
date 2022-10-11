@@ -14,9 +14,6 @@ export default class Card {
 
     return cardElement;
   }
-  _openFullSizeImage() {
-    this._handleCardClick(this._name, this._link);
-  }
   _removeCard() {
     this._element.remove();
     this._element = null;
@@ -26,7 +23,7 @@ export default class Card {
   }
   _setEventListeners() {
     this._image.addEventListener('click', () => {
-      this._openFullSizeImage();
+      this._handleCardClick(this._link, this._name);
     });
 
     this._element.querySelector('.places__button-delete').addEventListener('click', () => {

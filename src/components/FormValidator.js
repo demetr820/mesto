@@ -29,7 +29,16 @@ export default class FormValidator {
     input.classList.add(this._config.inputErrorClass);
     span.classList.add(this._config.spanErrorClass);
   }
-
+  resetErrors() {
+    const errorInputs = this._form.querySelectorAll(`.${this._config.inputErrorClass}`);
+    console.log(errorInputs);
+      if (errorInputs) {
+        Array.from(errorInputs).forEach(input => {
+          input.classList.remove(this._config.inputErrorClass);
+          input.nextElementSibling.textContent = '';
+        });
+      }
+    }
   _hideInputError(input) {
     const span = input.nextElementSibling;
     span.textContent = '';
