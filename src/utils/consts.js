@@ -1,16 +1,21 @@
 import FormValidator  from '../components/FormValidator.js';
+import PopupWithConfirmation  from '../components/PopupWithConfirmation.js';
 export const selectors = {
   // Попапы
   popupCardEdit: '.popup-profile',
   popupImage: '.popup-image',
   popupAddNewCard: '.popup-card-add',
+  popupAvatarChange: '.popup-avatar-change',
+  popupConfirmDeletion: '.popup__confirm-deletion',
   popups: '.popup',
   // Контейнеры
   cardsContainer: '.places',
   imageContainer: '.popup__container_image',
   // Формы
-  formEditProfile: '.popup__form[name="edit-form"]',
+  formEditProfile: '.popup__form[name="form-edit-profile"]',
   formAddNewCard: '.popup__form[name="form-add-card"]',
+  formAvatarChange: '.popup__form[name="form-avatar-change"]',
+  formConfirmDeletion: '.popup__form[name="form-confirm-deletion"]',
   // Кнопки
   buttonsClosePopup: '.popup__button-close',
   buttonOpenPopupProfile: '.profile__button_edit',
@@ -25,6 +30,8 @@ export const selectors = {
   titleInPopupImage: '.popup-image__title',
   fieldUserName: '.profile__user-name',
   fieldUserDescription: '.profile__description',
+  avatarProfile: '.profile__image-container',
+  imageAvatarProfile: '.profile__image',
   template: '.templates',
 };
 export const config = {
@@ -35,47 +42,34 @@ export const config = {
   inputErrorClass: 'popup__input_type_error',
   spanErrorClass: 'popup__error_visible'
 };
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+
+export const API_OPTIONS = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
+  id: '4d5c0747a5cbd99c4e345055',
+  headers: {
+    'Content-Type' : 'application/json;charset=utf-8',
+    authorization: 'e91cfcf8-46ae-42f5-a621-5b5a6218f23b'
   },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+}
 // Попапы
 export const popupCardEdit = document.querySelector(selectors.popupCardEdit);
 export const popupImage = document.querySelector(selectors.popupImage);
 export const popupAddNewCard = document.querySelector(selectors.popupAddNewCard);
 export const popups = document.querySelectorAll(selectors.popups);
-
+export const popupConfirmDeletion = new PopupWithConfirmation(selectors.popupConfirmDeletion);
 // Поля ввода
 export const inputUserName = popupCardEdit.querySelector(selectors.inputUserName);
 export const inputAbout = popupCardEdit.querySelector(selectors.inputAbout);
 // Формы
 export const formEditProfile = document.querySelector(selectors.formEditProfile);
 export const formAddNewCard = document.querySelector(selectors.formAddNewCard);
+export const formAvatarChange = document.querySelector(selectors.formAvatarChange);
+export const formConfirmDeletion = document.querySelector(selectors.formConfirmDeletion);
 // Валидация форм
-export const formEditValidator = new FormValidator(config, formEditProfile);
+export const editFormValidator = new FormValidator(config, formEditProfile);
 export const addNewCardFormValidator = new FormValidator(config, formAddNewCard);
+export const avatarChangeFormValidator = new FormValidator(config, formAvatarChange);
+export const confirmDeletionFormValidator = new FormValidator(config, formConfirmDeletion);
 // Кнопки
 export const buttonOpenPopupProfile = document.querySelector(
   selectors.buttonOpenPopupProfile
