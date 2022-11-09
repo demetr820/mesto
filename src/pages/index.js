@@ -16,11 +16,12 @@ import {
   buttonOpenPopupAddNewCard,
   selectors,
   popupConfirmDeletion,
-  popupCardEdit
+  popupCardEdit,
+  avatarProfile
   } from '../utils/consts.js';
 
 const api = new Api(API_OPTIONS);
-const avatarProfile = document.querySelector(selectors.avatarProfile);
+
 
 const popupWithImage = new PopupWithImage(selectors.popupImage);
 
@@ -47,6 +48,7 @@ const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, (item)
 
 const popupAvatarChange = new PopupWithForm(selectors.popupAvatarChange, (item) => {
   userInfo.setUserAvatar(item);
+  avatarChangeFormValidator.resetErrors();
 });
 
 const userInfo = new UserInfo({ nameSelector: selectors.fieldUserName,
@@ -106,6 +108,7 @@ buttonOpenPopupAddNewCard.addEventListener('click', () => {
   popupWithFormNewCard.open();
 });
 avatarProfile.addEventListener('click', () => {
+  avatarChangeFormValidator.disableSubmitButton();
   popupAvatarChange.open();
 });
 

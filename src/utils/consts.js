@@ -74,6 +74,7 @@ export const confirmDeletionFormValidator = new FormValidator(config, formConfir
 export const buttonOpenPopupProfile = document.querySelector(
   selectors.buttonOpenPopupProfile
 );
+export const avatarProfile = document.querySelector(selectors.avatarProfile);
 export const buttonSubmitInFormAddNewCard = formAddNewCard.querySelector(selectors.buttonSubmit);
 export const buttonsClosePopup = document.querySelectorAll(
   selectors.buttonsClosePopup
