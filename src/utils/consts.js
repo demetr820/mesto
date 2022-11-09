@@ -6,7 +6,7 @@ export const selectors = {
   popupImage: '.popup-image',
   popupAddNewCard: '.popup-card-add',
   popupAvatarChange: '.popup-avatar-change',
-  popupConfirmDeletion: '.popup__confirm',
+  popupConfirmDeletion: '.popup-confirm',
   popups: '.popup',
   // Контейнеры
   cardsContainer: '.places',
