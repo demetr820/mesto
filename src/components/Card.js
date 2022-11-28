@@ -38,7 +38,7 @@ export default class Card {
     return likes.find(item => item._id === this._userID) ? true : false;
   }
   updateLikeCounter(counter) {
-    this._likeCounter = counter;
+    this._likeCounter.textContent = counter;
   }
   _setEventListeners() {
     if (this._itemOwnerID === this._userID) {
@@ -50,10 +50,8 @@ export default class Card {
     this._image.addEventListener('click', () => {
       this._handleCardClick(this._link, this._name);
     });
-    this._buttonLike.addEventListener('click', async () => {
-      const res = await this._handleLikeClick(this._itemID, this.isLiked(this._arrayOfLikes));
-      this.updateLikeCounter(res.likes.length);
-      this.likeCardState(this.isLiked(res.likes));
+    this._buttonLike.addEventListener('click', () => {
+      this._handleLikeClick(this._itemID, this.isLiked(this._arrayOfLikes));
     })
   }
   generateCard() {
