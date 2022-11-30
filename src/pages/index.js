@@ -24,30 +24,23 @@ const api = new Api(API_OPTIONS);
 
 const popupWithImage = new PopupWithImage(selectors.popupImage);
 
-const popupWithFormProfile = new PopupWithForm(selectors.popupCardEdit, (item) => {
+const popupWithFormProfile = new PopupWithForm(selectors.popupCardEdit, async (item) => {
   showLoading(true);
-  userInfo.setUserInfo(item)
-  .finally(() => {
-    showLoading(false);
-  });
+  const data = await api.updateProfile(item);
+  userInfo.setUserInfo(data);
+  showLoading(false);
 });
-const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, (item) => {
-  api.createCard(item)
-  .then(data => {
-    const card = createNewCard({
-      name: data.name,
-      link: data.link,
-      likes: data.likes,
-      owner: data.owner,
-    }, userID);
-    cardsList.addItem(card);
-    addNewCardFormValidator.disableSubmitButton();
-    addNewCardFormValidator.resetErrors();
-  });
+const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, async (item) => {
+  const data = await api.createCard(item);
+  const card = createNewCard(data, userID);
+  cardsList.addItem(card);
+  addNewCardFormValidator.disableSubmitButton();
+  addNewCardFormValidator.resetErrors();
 });
 
-const popupAvatarChange = new PopupWithForm(selectors.popupAvatarChange, (item) => {
-  userInfo.setUserAvatar(item);
+const popupAvatarChange = new PopupWithForm(selectors.popupAvatarChange, async (item) => {
+  const data = await api.updateProfileAvatar(item);
+  userInfo.setUserAvatar(data);
   avatarChangeFormValidator.resetErrors();
 });
 
@@ -60,13 +53,11 @@ function createNewCard(item, userID) {
   const cardElement = new Card({
     item,
     handleImageClick: openImagePopup,
-    handleLikeClick: (id, isLiked) => {
-      return api.handleLike(id, isLiked)
-      .then((data) => {
-        cardElement.updateLikeCounter(data.likes.length);
-        cardElement.likeCardState(cardElement.isLiked(data.likes));
-      })
-      .catch(err => console.log(err));
+    handleLikeClick: async (id, isLiked) => {
+      const data = await api.handleLike(id, isLiked)
+      cardElement.updateLikeCounter(data.likes.length);
+      cardElement.isLiked = !isLiked;
+      cardElement.likeCardState(cardElement.isLiked);
     },
     handleCardDelete: (id) => {
       popupConfirmDeletion.open();
