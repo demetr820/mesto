@@ -16,7 +16,7 @@ import {
   buttonOpenPopupAddNewCard,
   selectors,
   popupConfirmDeletion,
-  popupCardEdit,
+  // popupCardEdit,
   avatarProfile
   } from '../utils/consts.js';
 
@@ -25,23 +25,42 @@ const api = new Api(API_OPTIONS);
 const popupWithImage = new PopupWithImage(selectors.popupImage);
 
 const popupWithFormProfile = new PopupWithForm(selectors.popupCardEdit, async (item) => {
-  showLoading(true);
-  const data = await api.updateProfile(item);
-  userInfo.setUserInfo(data);
-  showLoading(false);
+  showButtonStateMessage(editFormValidator.getSubmitBtn(), 'Сохранение...');
+  try {
+    const data = await api.updateProfile(item);
+    userInfo.setUserInfo(data);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    showButtonStateMessage(editFormValidator.getSubmitBtn(), 'Сохранить');
+  }
 });
 const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, async (item) => {
-  const data = await api.createCard(item);
-  const card = createNewCard(data, userID);
-  cardsList.addItem(card);
-  addNewCardFormValidator.disableSubmitButton();
-  addNewCardFormValidator.resetErrors();
+  showButtonStateMessage(addNewCardFormValidator.getSubmitBtn(), 'Сохранение...');
+  try {
+    const data = await api.createCard(item);
+    const card = createNewCard(data, userID);
+    cardsList.addItem(card);
+    addNewCardFormValidator.disableSubmitButton();
+    addNewCardFormValidator.resetErrors();
+  } catch (err) {
+    console.log(err);
+  } finally {
+    showButtonStateMessage(addNewCardFormValidator.getSubmitBtn(), 'Сохранить');
+  }
 });
 
 const popupAvatarChange = new PopupWithForm(selectors.popupAvatarChange, async (item) => {
-  const data = await api.updateProfileAvatar(item);
-  userInfo.setUserAvatar(data);
-  avatarChangeFormValidator.resetErrors();
+  showButtonStateMessage(avatarChangeFormValidator.getSubmitBtn(), 'Сохранение...');
+  try {
+    const data = await api.updateProfileAvatar(item);
+    userInfo.setUserAvatar(data);
+    avatarChangeFormValidator.resetErrors();
+  } catch (err) {
+    console.log(err);
+  } finally {
+    showButtonStateMessage(avatarChangeFormValidator.getSubmitBtn(), 'Сохранить');
+  }
 });
 
 const userInfo = new UserInfo({ nameSelector: selectors.fieldUserName,
@@ -54,21 +73,29 @@ function createNewCard(item, userID) {
     item,
     handleImageClick: openImagePopup,
     handleLikeClick: async (id, isLiked) => {
-      const data = await api.handleLike(id, isLiked)
-      cardElement.updateLikeCounter(data.likes.length);
-      cardElement.isLiked = !isLiked;
-      cardElement.likeCardState(cardElement.isLiked);
+      try {
+        const data = await api.handleLike(id, isLiked)
+        cardElement.updateLikeCounter(data.likes.length);
+        cardElement.isLiked = !isLiked;
+        cardElement.likeCardState(cardElement.isLiked);
+      } catch (err) {
+        console.log(err);
+      }
     },
     handleCardDelete: (id) => {
       popupConfirmDeletion.open();
-      popupConfirmDeletion.setSubmitAction(e => {
-        e.preventDefault();
-        api.deleteCard(id)
-        .then(() => {
+      popupConfirmDeletion.setSubmitAction( async (e) => {
+        showButtonStateMessage(popupConfirmDeletion.buttonSubmit, 'Удаление...');
+        try {
+          e.preventDefault();
+          await api.deleteCard(id)
           cardElement.removeCard();
           popupConfirmDeletion.close();
-        })
-        .catch(err => console.log(err));
+        } catch (err) {
+          console.log(err);
+        } finally {
+          showButtonStateMessage(popupConfirmDeletion.buttonSubmit, 'Да');
+        }
       })
     }
   }, userID,
@@ -79,13 +106,8 @@ function createNewCard(item, userID) {
 function openImagePopup(link, name) {
   popupWithImage.open(link, name);
 }
-function showLoading(state) {
-  const btn = popupCardEdit.querySelector('.popup__button-submit');
-  if (state) {
-    btn.textContent = 'Сохранение...';
-  } else {
-    btn.textContent = 'Сохранить';
-  }
+function showButtonStateMessage(btn, text) {
+  btn.textContent = text;
 }
 
 // Слушатели
@@ -118,16 +140,20 @@ avatarChangeFormValidator.enableValidation();
 let userID = null;
 const cardsList = new Section(createNewCard, selectors.cardsContainer);
 const init = async () => {
-  api.getUserInfo()
-  .then((data) => {
-    userID = data._id;
-    userInfo.setUserInfo(data);
-  })
-  .catch(err => console.log(err));
-  api.getInitialCards()
-  .then(data => {
-    cardsList.renderItems(data, userID)
-  })
-  .catch(err => console.log(err));
+  try {
+    Promise.all([
+      api.getUserInfo()
+      .then((data) => {
+        userID = data._id;
+        userInfo.setUserInfo(data);
+      }),
+      api.getInitialCards()
+      .then(data => {
+        cardsList.renderItems(data, userID)
+      }),
+    ])
+  } catch(err) {
+    console.log(err);
+  }
 }
 init();

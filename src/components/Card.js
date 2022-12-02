@@ -15,7 +15,7 @@ export default class Card {
     this._handleCardClick = data.handleImageClick;
     this._handleCardDelete = data.handleCardDelete;
     this._handleLikeClick = data.handleLikeClick;
-    this.isLiked = this._arrayOfLikes.find(item => item._id === this._userID) ? true : false;
+    this.isLiked = this._arrayOfLikes.find(item => item._id === this._userID);
   }
   _getTemplate() {
     const cardElement = document.querySelector(this._templateSelector)

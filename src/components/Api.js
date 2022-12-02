@@ -7,12 +7,10 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, { headers: this._header })
       .then(response => this._checkResponse(response))
-      .catch(err => Promise.reject(err));
   }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._header })
       .then(response => this._checkResponse(response))
-      .catch(err => Promise.reject(err));
   }
   createCard(item) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -21,7 +19,6 @@ export default class Api {
       body: JSON.stringify(item)
     })
     .then(response => this._checkResponse(response))
-    .catch(err => Promise.reject(err));
   }
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
@@ -29,7 +26,6 @@ export default class Api {
       headers: this._header
     })
     .then(response => this._checkResponse(response))
-    .catch(err => Promise.reject(err));
   }
   updateProfile(item) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -41,7 +37,6 @@ export default class Api {
       body: JSON.stringify(item)
     })
     .then(response => this._checkResponse(response))
-    .catch(err => Promise.reject(err));
   }
   updateProfileAvatar(item) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -53,7 +48,6 @@ export default class Api {
       body: JSON.stringify(item)
     })
     .then(response => this._checkResponse(response))
-    .catch(err => Promise.reject(err));
   }
   handleLike(id, isLiked) {
     if (isLiked === false) {
@@ -75,7 +69,6 @@ export default class Api {
         }
       })
       .then(response => this._checkResponse(response))
-      .catch(err => Promise.reject(err));
     }
   }
   _checkResponse(response) {
