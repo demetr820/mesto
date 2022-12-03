@@ -20,7 +20,6 @@ export default class FormValidator {
   }
   _handleFormSubmit(e) {
     e.preventDefault();
-    this._form.reset();
   }
   _showInputError(input) {
     const span = input.nextElementSibling;

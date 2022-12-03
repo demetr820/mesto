@@ -16,7 +16,6 @@ import {
   buttonOpenPopupAddNewCard,
   selectors,
   popupConfirmDeletion,
-  // popupCardEdit,
   avatarProfile
   } from '../utils/consts.js';
 
@@ -29,6 +28,7 @@ const popupWithFormProfile = new PopupWithForm(selectors.popupCardEdit, async (i
   try {
     const data = await api.updateProfile(item);
     userInfo.setUserInfo(data);
+    popupWithFormProfile.close();
   } catch (err) {
     console.log(err);
   } finally {
@@ -42,6 +42,7 @@ const popupWithFormNewCard = new PopupWithForm(selectors.popupAddNewCard, async 
     const card = createNewCard(data, userID);
     cardsList.addItem(card);
     addNewCardFormValidator.disableSubmitButton();
+    popupWithFormNewCard.close();
     addNewCardFormValidator.resetErrors();
   } catch (err) {
     console.log(err);
@@ -55,6 +56,7 @@ const popupAvatarChange = new PopupWithForm(selectors.popupAvatarChange, async (
   try {
     const data = await api.updateProfileAvatar(item);
     userInfo.setUserAvatar(data);
+    popupAvatarChange.close();
     avatarChangeFormValidator.resetErrors();
   } catch (err) {
     console.log(err);
@@ -84,17 +86,17 @@ function createNewCard(item, userID) {
     },
     handleCardDelete: (id) => {
       popupConfirmDeletion.open();
-      popupConfirmDeletion.setSubmitAction( async (e) => {
-        showButtonStateMessage(popupConfirmDeletion.buttonSubmit, 'Удаление...');
+      popupConfirmDeletion.setSubmitAction(async (e) => {
         try {
           e.preventDefault();
-          await api.deleteCard(id)
+          showButtonStateMessage(popupConfirmDeletion.submitButton, 'Удаление...');
+          await api.deleteCard(id);
           cardElement.removeCard();
           popupConfirmDeletion.close();
         } catch (err) {
           console.log(err);
         } finally {
-          showButtonStateMessage(popupConfirmDeletion.buttonSubmit, 'Да');
+          showButtonStateMessage(popupConfirmDeletion.submitButton, 'Да');
         }
       })
     }
@@ -118,12 +120,13 @@ buttonOpenPopupProfile.addEventListener('click', () => {
   inputAbout.value = data.about;
   popupWithFormProfile.open();
 });
-
 buttonOpenPopupAddNewCard.addEventListener('click', () => {
+  addNewCardFormValidator.disableSubmitButton();
   addNewCardFormValidator.resetErrors();
   popupWithFormNewCard.open();
 });
 avatarProfile.addEventListener('click', () => {
+  avatarChangeFormValidator.resetErrors();
   avatarChangeFormValidator.disableSubmitButton();
   popupAvatarChange.open();
 });
